@@ -7,6 +7,7 @@ public class constalationHolder : MonoBehaviour {
 	public int completionCount;
 	public int countToComplete=0;
 
+	public Button endGameButton;
 
 	public Text infoPanelName;
 	public Text infoPanelInfo;
@@ -16,6 +17,7 @@ public class constalationHolder : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 		int c=0;
 		foreach (Transform child in transform)
 		{
@@ -40,7 +42,8 @@ public class constalationHolder : MonoBehaviour {
 	public void completedConstalation(){
 		countToComplete++;
 		if (countToComplete == completionCount) {
-			Debug.Log("SCENE COMPLETED");
+
+			endGameButton.interactable =true;
 				}
 	}
 

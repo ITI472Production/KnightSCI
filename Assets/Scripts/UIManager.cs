@@ -113,10 +113,18 @@ public class UIManager : MonoBehaviour {
 		hint.enabled = true;
 		}
 
+	public void setDifficulty(bool dif){
+		
+		((settings)FindObjectOfType (typeof(settings))).setDifficulty (dif);
+	}
+	
+	public void setSound(float soundIn){
+		((settings)FindObjectOfType (typeof(settings))).setSound (soundIn);
+	}
+	
 
-
-	public void toMainMenu(){
-		Debug.Log ("To the main menu");
+	public void levelComplete(){
+		Application.LoadLevel("mainMenu");
 		}
 
 
