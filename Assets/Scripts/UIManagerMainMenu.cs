@@ -11,7 +11,6 @@ public class UIManagerMainMenu : MonoBehaviour {
 
 
 
-	
 
 	public void levelSpring(){
 		Application.LoadLevel("temp");

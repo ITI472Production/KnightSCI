@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class settings : MonoBehaviour {
 
-	bool difficulty=false;
+	public bool difficulty=false;
 	float soundLevel=1;
 
 	// Use this for initialization
@@ -27,6 +28,12 @@ public class settings : MonoBehaviour {
 		//find constalation holder set difficulty
 		foreach ( constalation check in ((constalation[])FindObjectsOfType(typeof(constalation)))){
 			check.isHardMode=difficulty;
+		}
+
+		foreach(Slider check in ((Slider[]) FindObjectsOfType(typeof(Slider)))){
+			if(check.name=="Slider Audio"){
+				check.value=soundLevel;
+			}
 		}
 
 

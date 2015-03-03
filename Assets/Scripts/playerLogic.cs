@@ -13,6 +13,13 @@ public class playerLogic : MonoBehaviour {
 	private Vector3[] worldCorners= new Vector3[4];
 	// 1 top left 3 bottom right
 
+	public AudioClip[] successChimes;
+	int successChimeNumber=0;
+	public AudioClip failSound;
+	float lastSuccess;
+	public int timeToKeepChain;
+
+
 
 	public star begin;
 	public star over;
@@ -74,9 +81,13 @@ public class playerLogic : MonoBehaviour {
 					begin=null;
 				}
 				else{
+
 					if(over.checkMainConstalation(begin,over)==false){
 						Debug.Log("meow");
 						begin.clearMainConstalation();
+						playFailSound();
+					}else{
+						playChainSound();
 					}
 					begin=null;
 				}
@@ -84,4 +95,33 @@ public class playerLogic : MonoBehaviour {
 		}
 
 	}
+	void playChainSound(){
+		//check to see if last chime happened 5 min ago
+
+		if (Time.time - lastSuccess < 5) {
+
+			this.audio.clip=successChimes[successChimeNumber];
+			this.audio.Play();
+
+			successChimeNumber++;
+
+			if(successChimeNumber>successChimes.Length-1){
+				successChimeNumber=successChimes.Length-1;
+			}
+		} else {
+			successChimeNumber=1;
+			this.audio.clip=successChimes[successChimeNumber];
+			this.audio.Play();
+		}
+		lastSuccess = Time.time;
+
+	}
+
+	void playFailSound(){
+		this.audio.clip=failSound;
+		this.audio.Play();
+		successChimeNumber = 0;
+		lastSuccess = Time.time - 6;
+	}
+
 }

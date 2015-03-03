@@ -95,6 +95,7 @@ public class constalation : MonoBehaviour {
 						isComplete=true;
 						((constalationHolder)this.transform.parent.GetComponent(typeof(constalationHolder))).completedConstalation();
 						endImage.enabled=true;
+						this.audio.Play();
 					}
 					((LineRenderer)check.GetComponent(typeof(LineRenderer))).enabled=true;
 					check.isActive=true;
@@ -106,10 +107,13 @@ public class constalation : MonoBehaviour {
 			clearLines();
 			return false;
 		}
-		return true;
+		return false;
 	}
 
 	public void clearLines(){
+		if(isHardMode==false){
+			return;
+		}
 		countToComplete=0;
 				foreach (line check in lines) {
 					check.isActive=false;
