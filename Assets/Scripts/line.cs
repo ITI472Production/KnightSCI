@@ -28,6 +28,9 @@ public class line : MonoBehaviour {
 		}
 
 		lineDraw = ((LineRenderer)this.GetComponent (typeof(LineRenderer)));
+		//set the proporties
+
+		lineDraw.SetWidth (.025f, .025f);
 		lineDraw.SetPosition(0,one.transform.position);
 		lineDraw.SetPosition(1,two.transform.position);
 		lineDraw.enabled = false;

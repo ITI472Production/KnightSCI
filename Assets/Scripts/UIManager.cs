@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 
-	public Animator contentPanel;
+	//public Animator contentPanel;
 	public Animator settingsPanel;
 	public Animator mainMenuPanel;
 	public Animator infoPanel;
@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour {
 	public Text info;
 	public Text hint;
 
-	public Image backgroundBlocker;
+	//public Image backgroundBlocker;
 
 
 
@@ -21,14 +21,14 @@ public class UIManager : MonoBehaviour {
 	void Start()
 	{
 		//SIDE MENU
-		RectTransform transform = contentPanel.gameObject.transform as RectTransform;        
+	/*	RectTransform transform = contentPanel.gameObject.transform as RectTransform;        
 		Vector2 position = transform.anchoredPosition;
 		position.x += transform.rect.width;
 		transform.anchoredPosition = position;
-
+*/
 		//MAIN MENU
-		transform = mainMenuPanel.gameObject.transform as RectTransform;        
-		position = transform.anchoredPosition;
+		RectTransform transform = mainMenuPanel.gameObject.transform as RectTransform;        
+		Vector2 position = transform.anchoredPosition;
 		position.y += transform.rect.height+300;
 		transform.anchoredPosition = position;
 
@@ -43,11 +43,11 @@ public class UIManager : MonoBehaviour {
 		position = transform.anchoredPosition;
 		position.y += transform.rect.height+400;
 		transform.anchoredPosition = position;
-		backgroundBlocker.enabled = false;
+		//backgroundBlocker.enabled = false;
 
 
 	}
-
+	/*
 	public void ToggleSideMenu()
 	{
 		contentPanel.enabled = true;
@@ -55,7 +55,7 @@ public class UIManager : MonoBehaviour {
 		bool isHidden = contentPanel.GetBool("isHidden");
 		contentPanel.SetBool("isHidden", !isHidden);
 	}
-
+*/
 
 	public void ToggleMainMenu(){
 		mainMenuPanel.enabled = true;
@@ -67,7 +67,7 @@ public class UIManager : MonoBehaviour {
 		if((settingsPanel.enabled==true )&& (settingsPanel.GetBool("isHidden")==false)){
 			settingsPanel.SetBool("isHidden", true);
 		}
-		backgroundBlocker.enabled = isHidden;
+		//backgroundBlocker.enabled = isHidden;
 	}
 
 
@@ -92,14 +92,14 @@ public class UIManager : MonoBehaviour {
 				settingsPanel.SetBool ("isHidden", true);
 
 				
-						backgroundBlocker.enabled = true;
+						//backgroundBlocker.enabled = true;
 						infoPanel.SetBool ("isHidden", false);
 		info.enabled = true;
 		hint.enabled = false;
 
 	}
 	public void CloseInfoPanel (){
-		backgroundBlocker.enabled = false;
+		//backgroundBlocker.enabled = false;
 		infoPanel.SetBool ("isHidden", true);
 	
 	}
@@ -113,10 +113,19 @@ public class UIManager : MonoBehaviour {
 		hint.enabled = true;
 		}
 
+	public void setDifficulty(bool dif){
+		
+		((settings)FindObjectOfType (typeof(settings))).setDifficulty (dif);
+	}
+	
+	public void setSound(float soundIn){
+		((settings)FindObjectOfType (typeof(settings))).setSound (soundIn);
+	}
+	
 
-
-	public void toMainMenu(){
-		Debug.Log ("To the main menu");
+	public void levelComplete(){
+		PlayerPrefs.Save ();
+		Application.LoadLevel("mainMenu");
 		}
 
 
