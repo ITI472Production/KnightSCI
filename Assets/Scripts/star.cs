@@ -4,12 +4,12 @@ using System.Collections;
 public class star : MonoBehaviour {
 
 
-	private playerLogic player;
+	private charaterController player;
 	private constalation mainConstalation;
 
 	// Use this for initialization
 	void Start () {
-		player = (playerLogic)(GameObject.FindGameObjectWithTag ("player").GetComponent (typeof(playerLogic)));
+				player = (charaterController)(GameObject.FindGameObjectWithTag ("player").GetComponent (typeof(charaterController)));
 				if (gameObject.transform.parent != null) {
 						mainConstalation = (constalation)gameObject.transform.parent.GetComponent (typeof(constalation));
 				}
@@ -25,16 +25,9 @@ public class star : MonoBehaviour {
 		player.over = null;
 
 	}
-	public bool checkMainConstalation(star begin,star over){
-				return mainConstalation.checkLines (begin, over);
+	public void checkMainConstalation(star begin,star over){
+				mainConstalation.checkLines (begin, over);
 		}
-
-	public void clearMainConstalation(){
-			mainConstalation.clearLines ();
-		}
-	public bool getIsHardMode(){
-		return mainConstalation.isHardMode;
-	}
 				
 				
 
